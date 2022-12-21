@@ -21,10 +21,14 @@ type UserRepository interface {
 	FindByUsernameAndPassword(ctx context.Context, username string, password string) (*User, error)
 	FindByID(ctx context.Context, userID int64) (*User, error)
 	Create(ctx context.Context, user User) error
+	Update(ctx context.Context, user User) error
+	Delete(ctx context.Context, userID int64) error
 }
 
 type UserUsecase interface {
 	FindByUsernameAndPassword(ctx context.Context, username string, password string) (*User, error)
 	FindByID(ctx context.Context, userID int64) (*User, error)
 	Create(ctx context.Context, input CreateUserInput) error
+	Update(ctx context.Context, input User) error
+	Delete(ctx context.Context, userID int64) error
 }

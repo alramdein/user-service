@@ -61,3 +61,41 @@ func (u *userUsecase) Create(ctx context.Context, input model.CreateUserInput) e
 
 	return nil
 }
+
+func (u *userUsecase) Update(ctx context.Context, input model.User) error {
+	user, err := u.userRepo.FindByID(ctx, input.ID)
+	if err != nil {
+		log.Error(err)
+		return err
+	}
+	if user == nil {
+		return ErrUserNotFound
+	}
+
+	err = u.userRepo.Update(ctx, input)
+	if err != nil {
+		log.Error(err)
+		return err
+	}
+
+	return nil
+}
+
+func (u *userUsecase) Delete(ctx context.Context, userID int64) error {
+	user, err := u.userRepo.FindByID(ctx, userID)
+	if err != nil {
+		log.Error(err)
+		return err
+	}
+	if user == nil {
+		return ErrUserNotFound
+	}
+
+	err = u.userRepo.Delete(ctx, userID)
+	if err != nil {
+		log.Error(err)
+		return err
+	}
+
+	return nil
+}
