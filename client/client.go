@@ -58,25 +58,14 @@ func withClientUnaryInterceptor(timeout time.Duration) grpc.DialOption {
 	})
 }
 
-func (u *userClient) FindUserByUsernameAndPassword(ctx context.Context, in *pb.FindUserByUsernameAndPasswordRequest, opts ...grpc.CallOption) (*pb.User, error) {
+func (u *userClient) FindUserByUsernameAndPassword(ctx context.Context, req *pb.FindUserByUsernameAndPasswordRequest, opts ...grpc.CallOption) (*pb.User, error) {
 	conn, err := u.Conn.Get(ctx)
 	if err != nil {
-		log.Fatalf("did not connect: %s", err)
 		return nil, err
 	}
-	defer conn.Close()
-
-	c := pb.NewUserServiceClient(conn)
-
-	user, err := c.FindUserByUsernameAndPassword(ctx, &pb.FindUserByUsernameAndPasswordRequest{
-		Username: in.Username,
-		Password: in.Password,
-	})
-	if err != nil {
-		log.Fatalf("Error when calling FindUserByUsernameAndPassword: %s", err)
-		return nil, err
-	}
-
-	log.Printf("Response from server: %s", user)
-	return user, nil
+	defer func() {
+		_ = conn.Close()
+	}()
+	cli := pb.NewUserServiceClient(conn.ClientConn)
+	return cli.FindUserByUsernameAndPassword(ctx, req, opts...)
 }

@@ -13,8 +13,8 @@ import (
 	"gorm.io/gorm"
 
 	"github.com/alramdein/user-service/config"
+	grpcDelivery "github.com/alramdein/user-service/delivery/grpc"
 	httpDelivery "github.com/alramdein/user-service/delivery/http"
-	"github.com/alramdein/user-service/model"
 	"github.com/alramdein/user-service/pb"
 	"github.com/alramdein/user-service/repository"
 	"github.com/alramdein/user-service/usecase"
@@ -47,8 +47,13 @@ func main() {
 		log.Fatalf("failed to listen: %v", err)
 		return
 	}
+
 	grpcServer := grpc.NewServer()
-	pb.RegisterUserServiceServer(grpcServer, &model.UserServiceServer{})
+
+	grpcsvc := grpcDelivery.NewUserService()
+	grpcsvc.RegisterUserUsecase(userUsecase)
+
+	pb.RegisterUserServiceServer(grpcServer, grpcsvc)
 
 	log.Info("grpc listen from ", config.GRPCPort())
 	if err := grpcServer.Serve(lis); err != nil {

@@ -37,6 +37,11 @@ type UserUsecase interface {
 	Delete(ctx context.Context, userID int64) error
 }
 
-type UserServiceServer struct {
-	pb.UserServiceServer
+func (u *User) ToProto() *pb.User {
+	return &pb.User{
+		Id:       u.ID,
+		Username: u.Username,
+		Email:    u.Email,
+		RoleId:   u.RoleID,
+	}
 }
