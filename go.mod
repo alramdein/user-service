@@ -1,4 +1,4 @@
-module github.com/alramdein
+module github.com/alramdein/user-service
 
 go 1.19
 

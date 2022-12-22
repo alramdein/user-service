@@ -3,7 +3,7 @@ package repository
 import (
 	"context"
 
-	"github.com/alramdein/model"
+	"github.com/alramdein/user-service/model"
 	"gorm.io/gorm"
 )
 

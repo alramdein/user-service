@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/alramdein/model"
-	"github.com/alramdein/usecase"
+	"github.com/alramdein/user-service/model"
+	"github.com/alramdein/user-service/usecase"
 	"github.com/labstack/echo/v4"
 	log "github.com/sirupsen/logrus"
 )

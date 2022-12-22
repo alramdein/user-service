@@ -4,10 +4,10 @@ import (
 	"context"
 	"log"
 
-	"github.com/alramdein/config"
+	"github.com/alramdein/user-service/config"
 	"google.golang.org/grpc"
 
-	"github.com/alramdein/pb"
+	"github.com/alramdein/user-service/pb"
 )
 
 func FindUserByUsernameAndPassword(ctx context.Context, username string, password string) error {

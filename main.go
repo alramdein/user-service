@@ -12,12 +12,12 @@ import (
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 
-	"github.com/alramdein/config"
-	httpDelivery "github.com/alramdein/delivery/http"
-	"github.com/alramdein/model"
-	"github.com/alramdein/pb"
-	"github.com/alramdein/repository"
-	"github.com/alramdein/usecase"
+	"github.com/alramdein/user-service/config"
+	httpDelivery "github.com/alramdein/user-service/delivery/http"
+	"github.com/alramdein/user-service/model"
+	"github.com/alramdein/user-service/pb"
+	"github.com/alramdein/user-service/repository"
+	"github.com/alramdein/user-service/usecase"
 )
 
 func main() {

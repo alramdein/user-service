@@ -3,8 +3,8 @@ package usecase
 import (
 	"context"
 
-	"github.com/alramdein/model"
-	"github.com/alramdein/utils"
+	"github.com/alramdein/user-service/model"
+	"github.com/alramdein/user-service/utils"
 	log "github.com/sirupsen/logrus"
 )
 

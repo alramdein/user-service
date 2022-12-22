@@ -3,7 +3,7 @@ package model
 import (
 	"context"
 
-	"github.com/alramdein/pb"
+	"github.com/alramdein/user-service/pb"
 )
 
 type User struct {
