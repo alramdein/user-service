@@ -4,6 +4,7 @@ go 1.19
 
 require (
 	github.com/labstack/echo/v4 v4.9.1
+	github.com/processout/grpc-go-pool v1.2.1
 	github.com/sirupsen/logrus v1.9.0
 	github.com/spf13/viper v1.14.0
 	google.golang.org/grpc v1.51.0
