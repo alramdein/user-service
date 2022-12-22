@@ -24,6 +24,10 @@ func HTTPPort() string {
 	return viper.GetString("http.port")
 }
 
+func GRPCPort() string {
+	return viper.GetString("grpc.port")
+}
+
 func DBHost() string {
 	return viper.GetString("database.host")
 }

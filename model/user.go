@@ -1,6 +1,10 @@
 package model
 
-import "context"
+import (
+	"context"
+
+	"github.com/alramdein/pb"
+)
 
 type User struct {
 	ID       int64  `json:"id"`
@@ -31,4 +35,8 @@ type UserUsecase interface {
 	Create(ctx context.Context, input CreateUserInput) error
 	Update(ctx context.Context, input User) error
 	Delete(ctx context.Context, userID int64) error
+}
+
+type UserServiceServer struct {
+	pb.UserServiceServer
 }
