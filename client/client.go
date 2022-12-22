@@ -4,7 +4,6 @@ import (
 	"context"
 	"time"
 
-	"github.com/alramdein/user-service/config"
 	grpcpool "github.com/processout/grpc-go-pool"
 	log "github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
@@ -60,8 +59,7 @@ func withClientUnaryInterceptor(timeout time.Duration) grpc.DialOption {
 }
 
 func (u *userClient) FindUserByUsernameAndPassword(ctx context.Context, in *pb.FindUserByUsernameAndPasswordRequest, opts ...grpc.CallOption) (*pb.User, error) {
-	var conn *grpc.ClientConn
-	conn, err := grpc.Dial(config.GRPCPort(), grpc.WithInsecure())
+	conn, err := u.Conn.Get(ctx)
 	if err != nil {
 		log.Fatalf("did not connect: %s", err)
 		return nil, err
